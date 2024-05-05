@@ -47,16 +47,10 @@ namespace Bill_Manager.Entities
             return db.InsertOrReplace(account);
         }
 
-        public static int UpdateRecord(BillerAccount account)
-        {
-            using var db = DBHelper.GetSQLiteConnection();
-            return db.Update(account);
-        }
-
         public static int DeleteRecord(BillerAccount account)
         {
             using var db = DBHelper.GetSQLiteConnection();
-            return db.Delete(account);
+            return db.Execute("DELETE FROM BillerAccounts WHERE BillerID = ?", account.BillerID);
         }
 
         public static List<BillerAccount> GetAll()

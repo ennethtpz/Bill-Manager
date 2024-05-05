@@ -8,5 +8,10 @@
     <string name="biller_account_number_field">Account Number</string>
     <string name="toast_incomplete_fields">Please accomplish all fields!</string>
     <string name="toast_account_added">Biller account added!</string>
+    <string name="toast_account_deleted">Biller account deleted!</string>
     <string name="toast_error">Sorry, an error occured.</string>
+    <string name="delete_biller_title">Delete Biller Account</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_message">Are you sure you want to delete the biller account {0}?</string>
 </resources>
