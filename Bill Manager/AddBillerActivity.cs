@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Bill_Manager.Entities;
 
 namespace Bill_Manager;
 
@@ -28,7 +29,12 @@ public class AddBillerActivity : Activity
     {
         if (ValidateFields())
         {
-            //TODO: Add saving logic
+            var newAcct = new BillerAccount();
+            newAcct.Title = etxtTitle.Text;
+            newAcct.AccountName = etxtAcctName.Text;
+            newAcct.AccountNo = etxtAcctNo.Text;
+
+            BillerAccount.InsertOrReplace(newAcct);
 
             var i = new Intent();
             SetResult(Result.Ok, i);

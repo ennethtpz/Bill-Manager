@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Android.Runtime;
+using Bill_Manager.Entities;
 
 namespace Bill_Manager;
 
@@ -19,6 +20,8 @@ public class MainActivity : Activity
 
         btnAddBiller = (Button)FindViewById(Resource.Id.btnAddBiller);
         btnAddBiller.Click += BtnAddBiller_Click;
+
+        var AccountsList = BillerAccount.GetAll();
     }
 
     private void BtnAddBiller_Click(object? sender, EventArgs e)
@@ -34,6 +37,7 @@ public class MainActivity : Activity
         if (requestCode == ADD_BILLER && resultCode == Result.Ok)
         {
             //TODO: Refresh recyclerview here!
+            var AccountsList = BillerAccount.GetAll();
         }
     }
 }
