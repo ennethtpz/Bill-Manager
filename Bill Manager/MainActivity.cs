@@ -18,13 +18,13 @@ public class MainActivity : Activity
         SetContentView(Resource.Layout.activity_main);
     }
 
-    [OnClick(Resource.Id.btnAddBiller)]
     private void BtnAddBiller_Click(object? sender, EventArgs e)
     {
         var i = new Intent(this, typeof(AddBillerActivity));
         StartActivityForResult(i, ADD_BILLER);
     }
 
+    [OnClick(Resource.Id.btnAddBiller)]
     protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent? data)
     {
         base.OnActivityResult(requestCode, resultCode, data);
