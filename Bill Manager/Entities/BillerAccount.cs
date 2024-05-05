@@ -21,6 +21,7 @@ namespace Bill_Manager.Entities
         [Column("DateAdded")]
         public DateTime DateAdded { get; set; }
 
+
         public BillerAccount()
 		{
 
@@ -28,17 +29,16 @@ namespace Bill_Manager.Entities
 
         public static int CreateTable()
         {
-            var db = DBHelper.GetSQLiteConnection();
+            using var db = DBHelper.GetSQLiteConnection();
             return (int)db.CreateTable<BillerAccount>();
         }
 
         public static int InsertOrReplace(BillerAccount newAccount)
         {
-            var db = DBHelper.GetSQLiteConnection();
-
+            using var db = DBHelper.GetSQLiteConnection();
             var newRecord = new BillerAccount()
             {
-                BillerID = new Guid().ToString(),
+                BillerID = Guid.NewGuid().ToString(),
                 Title = newAccount.Title,
                 AccountName = newAccount.AccountName,
                 AccountNo = newAccount.AccountNo,
@@ -50,7 +50,7 @@ namespace Bill_Manager.Entities
 
         public static List<BillerAccount> GetAll()
         {
-            var db = DBHelper.GetSQLiteConnection();
+            using var db = DBHelper.GetSQLiteConnection();
             return db.Query<BillerAccount>("SELECT * FROM BillerAccounts").ToList();
         }
 	}

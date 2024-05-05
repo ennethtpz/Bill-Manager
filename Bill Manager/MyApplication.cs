@@ -3,6 +3,11 @@ using Bill_Manager.Entities;
 
 namespace Bill_Manager
 {
+#if DEBUG
+    [Application(Debuggable = true, LargeHeap = true)]
+#else
+    [Application(Debuggable = false, LargeHeap = true)]
+#endif
     public class MyBillManagerApplication : Application
     {
         public MyBillManagerApplication(IntPtr javaReference, JniHandleOwnership transfer)

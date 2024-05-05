@@ -11,6 +11,8 @@ public class MainActivity : Activity
 
     Button btnAddBiller;
 
+    List<BillerAccount> accountsList;
+
     protected override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
@@ -21,7 +23,11 @@ public class MainActivity : Activity
         btnAddBiller = (Button)FindViewById(Resource.Id.btnAddBiller);
         btnAddBiller.Click += BtnAddBiller_Click;
 
-        var AccountsList = BillerAccount.GetAll();
+        var accountsList = BillerAccount.GetAll();
+        if (accountsList != null)
+        {
+
+        }
     }
 
     private void BtnAddBiller_Click(object? sender, EventArgs e)
@@ -37,7 +43,7 @@ public class MainActivity : Activity
         if (requestCode == ADD_BILLER && resultCode == Result.Ok)
         {
             //TODO: Refresh recyclerview here!
-            var AccountsList = BillerAccount.GetAll();
+            accountsList = BillerAccount.GetAll();
         }
     }
 }
