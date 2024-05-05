@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.Runtime;
-using CheeseBind;
 
 namespace Bill_Manager;
 
@@ -9,13 +8,17 @@ public class MainActivity : Activity
 {
     public static int ADD_BILLER = 0;
 
-    [BindView(Resource.Id.btnAddBiller)]
     Button btnAddBiller;
 
     protected override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
+
+        // Set our view from the "main" layout resource
         SetContentView(Resource.Layout.activity_main);
+
+        btnAddBiller = (Button)FindViewById(Resource.Id.btnAddBiller);
+        btnAddBiller.Click += BtnAddBiller_Click;
     }
 
     private void BtnAddBiller_Click(object? sender, EventArgs e)
@@ -24,7 +27,6 @@ public class MainActivity : Activity
         StartActivityForResult(i, ADD_BILLER);
     }
 
-    [OnClick(Resource.Id.btnAddBiller)]
     protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent? data)
     {
         base.OnActivityResult(requestCode, resultCode, data);

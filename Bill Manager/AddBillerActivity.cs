@@ -1,30 +1,29 @@
 ﻿using Android.Content;
-using CheeseBind;
 
 namespace Bill_Manager;
 
 [Activity(Label = "@string/add_biller_title")]
 public class AddBillerActivity : Activity
 {
-    [BindView(Resource.Id.btnAddBiller)]
     Button btnAddBiller;
-
-    [BindView(Resource.Id.etxtTitle)]
     EditText etxtTitle;
-
-    [BindView(Resource.Id.etxtAcctName)]
     EditText etxtAcctName;
-
-    [BindView(Resource.Id.etxtAcctNo)]
     EditText etxtAcctNo;
 
     protected override void OnCreate(Bundle? savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
+
         SetContentView(Resource.Layout.activity_addbiller);
+
+        btnAddBiller = (Button)FindViewById(Resource.Id.btnAddBiller);
+        etxtTitle = (EditText)FindViewById(Resource.Id.etxtTitle);
+        etxtAcctName = (EditText)FindViewById(Resource.Id.etxtAcctName);
+        etxtAcctNo = (EditText)FindViewById(Resource.Id.etxtAcctNo);
+
+        btnAddBiller.Click += BtnAddBiller_Click;
     }
 
-    [OnClick(Resource.Id.btnAddBiller)]
     private void BtnAddBiller_Click(object? sender, EventArgs e)
     {
         if (ValidateFields())
