@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill Manager", "Bill Manager\Bill Manager.csproj", "{C13C14F7-9799-4338-86F1-A22987E838AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C13C14F7-9799-4338-86F1-A22987E838AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C13C14F7-9799-4338-86F1-A22987E838AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C13C14F7-9799-4338-86F1-A22987E838AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C13C14F7-9799-4338-86F1-A22987E838AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1F9FE43-6E45-491D-AC42-5025ECAFEFCB}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+﻿<resources>
+    <string name="app_name">Bill Manager</string>
+    <string name="home_title">Bill Manager</string>
+    <string name="add_biller">+ Add Biller</string>
+    <string name="add_biller_title">Add a New Biller</string>
+    <string name="biller_title_field">Biller Title</string>
+    <string name="biller_account_name_field">Account Name</string>
+    <string name="biller_account_number_field">Account Number</string>
+    <string name="toast_incomplete_fields">Please accomplish all fields!</string>
+</resources>
+
+
