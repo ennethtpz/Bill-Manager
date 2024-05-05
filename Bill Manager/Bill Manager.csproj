@@ -12,13 +12,17 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.3.2.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="DataAccess\" />
+    <None Remove="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="DataAccess\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
 </Project>

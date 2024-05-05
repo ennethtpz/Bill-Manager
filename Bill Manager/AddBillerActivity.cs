@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Bill_Manager.Entities;
+using Newtonsoft.Json;
 
 namespace Bill_Manager;
 
@@ -34,11 +35,16 @@ public class AddBillerActivity : Activity
             newAcct.AccountName = etxtAcctName.Text;
             newAcct.AccountNo = etxtAcctNo.Text;
 
-            BillerAccount.InsertOrReplace(newAcct);
-
-            var i = new Intent();
-            SetResult(Result.Ok, i);
-            Finish();
+            if (BillerAccount.InsertOrReplace(ref newAcct) > 0)
+            {
+                var i = new Intent();
+                string newAcctJson = JsonConvert.SerializeObject(newAcct);
+                i.PutExtra(MainActivity.KEY_NEWACCOUNT, newAcctJson);
+                SetResult(Result.Ok, i);
+                Finish();
+            }
+            else
+                Toast.MakeText(this, Resource.String.toast_error, ToastLength.Short).Show();
         }
         else
             Toast.MakeText(this, Resource.String.toast_incomplete_fields, ToastLength.Short).Show();

@@ -1,6 +1,9 @@
 ﻿using Android.Content;
 using Android.Runtime;
+using AndroidX.RecyclerView.Widget;
+using Bill_Manager.Adapters;
 using Bill_Manager.Entities;
+using Newtonsoft.Json;
 
 namespace Bill_Manager;
 
@@ -8,8 +11,10 @@ namespace Bill_Manager;
 public class MainActivity : Activity
 {
     public static int ADD_BILLER = 0;
+    public static string KEY_NEWACCOUNT = "newAcct";
 
     Button btnAddBiller;
+    RecyclerView rcvBillers;
 
     List<BillerAccount> accountsList;
 
@@ -21,12 +26,17 @@ public class MainActivity : Activity
         SetContentView(Resource.Layout.activity_main);
 
         btnAddBiller = (Button)FindViewById(Resource.Id.btnAddBiller);
+        rcvBillers = (RecyclerView)FindViewById(Resource.Id.rcvBillers);
+
         btnAddBiller.Click += BtnAddBiller_Click;
 
         var accountsList = BillerAccount.GetAll();
-        if (accountsList != null)
+        if (accountsList != null && accountsList.Count > 0)
         {
-
+            var layoutMngr = new LinearLayoutManager(this, LinearLayoutManager.Vertical, false);
+            var adapter = new BillerAccountsAdapter(this, accountsList);
+            rcvBillers.SetLayoutManager(layoutMngr);
+            rcvBillers.SetAdapter(adapter);
         }
     }
 
@@ -40,10 +50,22 @@ public class MainActivity : Activity
     {
         base.OnActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ADD_BILLER && resultCode == Result.Ok)
+        if (requestCode == ADD_BILLER
+            && resultCode == Result.Ok
+            && data != null
+            && data.Extras != null
+            && rcvBillers.GetAdapter() is BillerAccountsAdapter adapter)
         {
-            //TODO: Refresh recyclerview here!
-            accountsList = BillerAccount.GetAll();
+
+            string? newAccntJson = data.Extras.GetString(KEY_NEWACCOUNT);
+            if (!string.IsNullOrEmpty(newAccntJson))
+            {
+                var newAcct = JsonConvert.DeserializeObject<BillerAccount>(newAccntJson);
+                if (newAcct != null)
+                    adapter.AddItem(newAcct);
+            }
+
+            Toast.MakeText(this, Resource.String.toast_account_added, ToastLength.Short).Show();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Bill_Manager.DataAccess;
+﻿using Android.Nfc;
+using Bill_Manager.DataAccess;
 using SQLite;
 
 namespace Bill_Manager.Entities
@@ -33,19 +34,29 @@ namespace Bill_Manager.Entities
             return (int)db.CreateTable<BillerAccount>();
         }
 
-        public static int InsertOrReplace(BillerAccount newAccount)
+        public static int InsertOrReplace(ref BillerAccount account)
         {
             using var db = DBHelper.GetSQLiteConnection();
-            var newRecord = new BillerAccount()
-            {
-                BillerID = Guid.NewGuid().ToString(),
-                Title = newAccount.Title,
-                AccountName = newAccount.AccountName,
-                AccountNo = newAccount.AccountNo,
-                DateAdded = DateTime.Now
-            };
 
-            return db.InsertOrReplace(newRecord);
+            if (string.IsNullOrEmpty(account.BillerID))
+            {
+                account.BillerID = Guid.NewGuid().ToString();
+                account.DateAdded = DateTime.Now;
+            }
+
+            return db.InsertOrReplace(account);
+        }
+
+        public static int UpdateRecord(BillerAccount account)
+        {
+            using var db = DBHelper.GetSQLiteConnection();
+            return db.Update(account);
+        }
+
+        public static int DeleteRecord(BillerAccount account)
+        {
+            using var db = DBHelper.GetSQLiteConnection();
+            return db.Delete(account);
         }
 
         public static List<BillerAccount> GetAll()
